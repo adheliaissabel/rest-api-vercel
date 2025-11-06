@@ -73,17 +73,17 @@ gut push myrepo main --force
 - Klik **New → Web Service**
 - Pilih GitHub repo kamu (rest-api-php)
 - Isi konfigurasi:
-  - **Environment**: `PHP`
+  - **service type**: `Web Service`
+  - **Language**: `Docker` (buat image PHP)
   - **Region**: Singapore (disarankan untuk Asia)
-  - **Build Command**: `composer install`
-  - **Start Command**: `php -S 0.0.0.0:10000`
-  - **Port**: Render otomatis akan arahkan port `10000`
 - Klik **Create Web Service**
-4. **Menyambung Database**
-- Opsi A: Gunakan MySQL di Planetscale
-  - Buat akun di [Planetscale.com](https://planetscale.com/)
-  - Buat database baru
-  - Dapatkan kredensial:
+4. **Menyambung Database MySQL**
+- Buat akun di [Planetscale.com](https://planetscale.com/)
+- Buat database baru:
+  - name: `kampus_db`
+  - region: Singapore
+
+- Dapatkan kredensial:
 ```yaml
 host: aws.connect.planetscale.com
 port: 3306
