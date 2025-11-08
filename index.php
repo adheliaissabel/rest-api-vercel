@@ -2,6 +2,25 @@
 require_once __DIR__ . '/core/AuthMiddleware.php';
 require_once __DIR__ . '/api/MahasiswaController.php';
 
+// DEBUG ENDPOINT - Harus di paling atas sebelum yang lain
+if (isset($_SERVER['REQUEST_URI'])) {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    
+    if ($uri === '/debug-port') {
+        header('Content-Type: application/json');
+        echo json_encode([
+            'DB_TYPE' => getenv('DB_TYPE'),
+            'DB_HOST' => getenv('DB_HOST'),
+            'DB_PORT' => getenv('DB_PORT'), // Ini yang penting!
+            'DB_NAME' => getenv('DB_NAME'),
+            'DB_USER' => getenv('DB_USER') ? substr(getenv('DB_USER'), 0, 20) . '...' : null,
+            'DB_PASS_SET' => getenv('DB_PASS') ? 'YES' : 'NO',
+            'DB_SSLMODE' => getenv('DB_SSLMODE'),
+        ]);
+        exit;
+    }
+}
+
 // Inisialisasi middleware auth
 $auth = new AuthMiddleware();
 
