@@ -173,3 +173,4 @@ git add .
 git commit -m "persiapan sebelum deploy"
 gut push repoku main --force
 ```
+https://rest-jnhy2muqr-adhelia-issabes-projects.vercel.app/#
